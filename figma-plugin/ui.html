@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #1e2533;
+      color: #dde6f5;
+      padding: 20px;
+      font-size: 13px;
+    }
+    h2 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #dde6f5;
+      margin-bottom: 6px;
+    }
+    p {
+      font-size: 12px;
+      color: #62789e;
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+    .btn {
+      width: 100%;
+      padding: 11px;
+      background: linear-gradient(90deg, #7060f0, #4a84f4);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    .btn:hover { opacity: 0.9; }
+    .btn-sec {
+      width: 100%;
+      padding: 10px;
+      background: transparent;
+      border: 1px solid #243356;
+      border-radius: 8px;
+      color: #62789e;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    #status {
+      margin-top: 14px;
+      font-size: 12px;
+      color: #00c896;
+      min-height: 18px;
+    }
+    .swatch-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .swatch {
+      width: 22px; height: 22px;
+      border-radius: 5px;
+      border: 1px solid rgba(255,255,255,0.08);
+      title: attr(data-hex);
+      cursor: default;
+    }
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: #3a4f6e;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      margin-bottom: 6px;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Adnova Dashboard</h2>
+  <p>Generates the complete Adnova Reports &amp; Analytics dashboard as a Figma frame with exact colors, borders, border-radii, shadows, and folder-tab card depth.</p>
+
+  <div class="section-label">Color Palette</div>
+  <div class="swatch-row">
+    <div class="swatch" style="background:#080c14" title="#080c14 bg-base"></div>
+    <div class="swatch" style="background:#0c1220" title="#0c1220 sidebar/main"></div>
+    <div class="swatch" style="background:#1a2640" title="#1a2640 card-inner"></div>
+    <div class="swatch" style="background:#090e1a" title="#090e1a inset"></div>
+    <div class="swatch" style="background:#141f35" title="#141f35 border-card"></div>
+    <div class="swatch" style="background:#243356" title="#243356 border-inner"></div>
+    <div class="swatch" style="background:#7060f0" title="#7060f0 purple"></div>
+    <div class="swatch" style="background:#4a84f4" title="#4a84f4 blue"></div>
+    <div class="swatch" style="background:#00c896" title="#00c896 green"></div>
+    <div class="swatch" style="background:#f03e5f" title="#f03e5f red"></div>
+    <div class="swatch" style="background:#dde6f5" title="#dde6f5 text-hi"></div>
+    <div class="swatch" style="background:#62789e" title="#62789e text-mid"></div>
+    <div class="swatch" style="background:#3a4f6e" title="#3a4f6e text-lo"></div>
+  </div>
+
+  <button class="btn" id="generateBtn">⚡ Generate Full Dashboard</button>
+  <button class="btn-sec" id="cancelBtn">Cancel</button>
+
+  <div id="status"></div>
+
+  <script>
+    document.getElementById('generateBtn').addEventListener('click', () => {
+      document.getElementById('status').textContent = 'Building dashboard…';
+      parent.postMessage({ pluginMessage: { type: 'generate' } }, '*');
+    });
+    document.getElementById('cancelBtn').addEventListener('click', () => {
+      parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*');
+    });
+    window.onmessage = (event) => {
+      const msg = event.data.pluginMessage;
+      if (!msg) return;
+      if (msg.type === 'done') {
+        document.getElementById('status').textContent = '✅ Dashboard created! Check your canvas.';
+      } else if (msg.type === 'error') {
+        document.getElementById('status').style.color = '#f03e5f';
+        document.getElementById('status').textContent = '❌ ' + msg.message;
+      } else if (msg.type === 'progress') {
+        document.getElementById('status').textContent = msg.message;
+      }
+    };
+  </script>
+</body>
+</html>
