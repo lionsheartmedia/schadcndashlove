@@ -229,7 +229,7 @@ app.get('/', (c) => {
       background: var(--bg-main);
       border: 1px solid var(--border-faint);
       border-radius: 12px;
-      padding: 14px 7px 7px 7px;
+      padding: 14px 4px 4px 4px;
     }
 
     .grid {
@@ -248,7 +248,7 @@ app.get('/', (c) => {
       background: var(--bg-card-outer);   /* same as bg-main — tab header blends in */
       border-radius: 12px;
       border: 1px solid var(--border-card);
-      padding: 14px 7px 7px 7px;
+      padding: 14px 4px 4px 4px;
       overflow: hidden;
     }
 
@@ -441,7 +441,7 @@ app.get('/', (c) => {
       background: var(--bg-card-outer);
       border-radius: 12px;
       border: 1px solid var(--border-card);
-      padding: 14px 7px 7px 7px;
+      padding: 14px 4px 4px 4px;
       overflow: hidden;
     }
     /* metric card inner panel wraps everything below the label */
