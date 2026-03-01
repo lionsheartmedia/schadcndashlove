@@ -233,7 +233,7 @@ async function buildSidebar() {
   });
   sb.resize(210, 900);
   sb.primaryAxisAlignItems = 'MIN';
-  sb.counterAxisAlignItems = 'STRETCH';
+  sb.counterAxisAlignItems = 'MIN';
   sb.layoutSizingVertical = 'FIXED';
   sb.layoutSizingHorizontal = 'FIXED';
 
@@ -500,7 +500,7 @@ async function buildRevenueCard(w) {
   });
 
   // Tab header
-  const head = autoFrame('H', 0, 0, 7, 12, 3, null, 0, { counter: 'CENTER', primary: 'SPACE_BETWEEN' });
+  const head = autoFrame('H', 0, 0, 7, 12, 3, null, 0, { counter: 'CENTER', primary: 'MIN' });
   head.layoutSizingHorizontal = 'FILL';
   head.layoutSizingVertical = 'HUG';
   head.y = 0;
@@ -880,7 +880,7 @@ async function buildMetricCard(w, h, label, value, badgeLabel, badgeType, sparkC
 
   // Tab header
   const top = autoFrame('H', 0, 0, 7, 0, 3, null, 0, {
-    counter: 'MIN', primary: 'SPACE_BETWEEN'
+    counter: 'MIN', primary: 'MIN'
   });
   top.resize(w, 34);
   top.fills = [];
@@ -922,7 +922,7 @@ async function buildMetricCard(w, h, label, value, badgeLabel, badgeType, sparkC
   body.appendChild(spark);
 
   // Footer
-  const footer = autoFrame('H', 4, 8, 0, 8, 0, null, 0, { counter: 'CENTER', primary: 'SPACE_BETWEEN' });
+  const footer = autoFrame('H', 4, 8, 0, 8, 0, null, 0, { counter: 'CENTER', primary: 'MIN' });
   footer.resize(body.width, 26);
   footer.fills = [];
   footer.x = 0; footer.y = body.height - 34;
