@@ -43,10 +43,8 @@ async function loadFont(family, style) {
 
 async function loadFonts() {
   for (const f of [
-    ['Inter', 'Regular'], ['Inter', 'Medium'], ['Inter', 'Semi Bold'],
-    ['Inter', 'Bold'], ['Inter', 'Extra Bold'],
-    ['Manrope', 'Regular'], ['Manrope', 'Medium'], ['Manrope', 'Semi Bold'],
-    ['Manrope', 'Bold'], ['Manrope', 'Extra Bold'],
+    ['Inter', 'Regular'], ['Inter', 'Medium'], ['Inter', 'Medium'],
+    ['Inter', 'Bold'], ['Inter', 'Bold'],
   ]) { await loadFont(f[0], f[1]); }
 }
 
@@ -273,8 +271,8 @@ async function buildSidebar() {
   const wsInfo = autoFrame('V', 1, 0, 0, 0, 0, null, 0);
   wsInfo.layoutSizingHorizontal = 'FILL';
   wsInfo.layoutSizingVertical = 'HUG';
-  const wsLbl = await txt('WORKSPACE', 'Manrope', 9, 'Semi Bold', C.textLo, { letterSpacing: 0.7, textCase: 'UPPER' });
-  const wsName = await txt('Marketing-bnks534', 'Manrope', 11, 'Regular', C.textMid);
+  const wsLbl = await txt('WORKSPACE', 'Inter', 9, 'Medium', C.textLo, { letterSpacing: 0.7, textCase: 'UPPER' });
+  const wsName = await txt('Marketing-bnks534', 'Inter', 11, 'Regular', C.textMid);
   wsInfo.appendChild(wsLbl);
   wsInfo.appendChild(wsName);
   ws.appendChild(wsInfo);
@@ -307,7 +305,7 @@ async function buildSidebar() {
     }
     const iconDot = rect(4, 4, item.active ? C.purple : C.textLo, 2, item.active ? 1 : 0.6);
     ni.appendChild(iconDot);
-    const niLabel = await txt(item.label, 'Manrope', 12.5, 'Regular', item.active ? '#b8adff' : C.textMid);
+    const niLabel = await txt(item.label, 'Inter', 12.5, 'Regular', item.active ? '#b8adff' : C.textMid);
     ni.appendChild(niLabel);
     navSection1.appendChild(ni);
   }
@@ -325,7 +323,7 @@ async function buildSidebar() {
     ni.layoutSizingVertical = 'HUG';
     const dot = rect(4, 4, C.textLo, 2, 0.5);
     ni.appendChild(dot);
-    const niLabel = await txt(label, 'Manrope', 12.5, 'Regular', C.textMid);
+    const niLabel = await txt(label, 'Inter', 12.5, 'Regular', C.textMid);
     ni.appendChild(niLabel);
     navSection2.appendChild(ni);
   }
@@ -352,14 +350,14 @@ async function buildSidebar() {
   upg.layoutSizingVertical = 'HUG';
 
   const upgTitle = await txt('Upgrade to Pro!', 'Inter', 11, 'Bold', C.textHi);
-  const upgDesc = await txt('Unlock Premium Features and Manage Unlimited projects', 'Manrope', 10, 'Regular', C.textMid);
+  const upgDesc = await txt('Unlock Premium Features and Manage Unlimited projects', 'Inter', 10, 'Regular', C.textMid);
   upgDesc.layoutSizingHorizontal = 'FILL';
 
   const upgBtn = autoFrame('H', 0, 7, 0, 7, 0, null, 7, { primary: 'CENTER', counter: 'CENTER' });
   upgBtn.layoutSizingHorizontal = 'FILL';
   upgBtn.layoutSizingVertical = 'HUG';
   upgBtn.fills = [gradientFill('#7060f0', '#4a84f4', 90)];
-  const upgBtnTxt = await txt('Upgrade Now', 'Inter', 11, 'Semi Bold', '#ffffff');
+  const upgBtnTxt = await txt('Upgrade Now', 'Inter', 11, 'Medium', '#ffffff');
   upgBtn.appendChild(upgBtnTxt);
 
   upg.appendChild(upgTitle);
@@ -393,8 +391,8 @@ async function buildSidebar() {
   const usrInfo = autoFrame('V', 1, 0, 0, 0, 0, null, 0);
   usrInfo.layoutSizingHorizontal = 'FILL';
   usrInfo.layoutSizingVertical = 'HUG';
-  const usrName = await txt('Edwin T.', 'Manrope', 12, 'Semi Bold', C.textHi);
-  const usrEmail = await txt('Edwin.admin@dev.com', 'Manrope', 10, 'Regular', C.textLo);
+  const usrName = await txt('Edwin T.', 'Inter', 12, 'Medium', C.textHi);
+  const usrEmail = await txt('Edwin.admin@dev.com', 'Inter', 10, 'Regular', C.textLo);
   usrInfo.appendChild(usrName);
   usrInfo.appendChild(usrEmail);
   usr.appendChild(usrInfo);
@@ -470,12 +468,12 @@ async function buildStatCell(label, value, badgeLabel, badgeType) {
   info.layoutSizingHorizontal = 'FILL';
   info.layoutSizingVertical = 'HUG';
 
-  const lbl = await txt(label, 'Manrope', 16, 'Regular', C.textLo);
+  const lbl = await txt(label, 'Inter', 16, 'Regular', C.textLo);
   const valRow = autoFrame('H', 5, 0, 0, 0, 0, null, 0, { counter: 'CENTER' });
   valRow.layoutSizingHorizontal = 'HUG';
   valRow.layoutSizingVertical = 'HUG';
 
-  const val = await txt(value, 'Manrope', 16, 'Bold', C.textHi);
+  const val = await txt(value, 'Inter', 16, 'Bold', C.textHi);
   valRow.appendChild(val);
 
   if (badgeLabel) {
@@ -508,13 +506,13 @@ async function buildRevenueCard(w) {
   head.y = 0;
   head.x = 0;
 
-  const headTitle = await txt("Retained Users' Revenue", 'Inter', 18, 'Semi Bold', C.textHi);
+  const headTitle = await txt("Retained Users' Revenue", 'Inter', 18, 'Medium', C.textHi);
   const pill = autoFrame('H', 5, 5, 10, 5, 10, C.bgInset, 6, {
     stroke: C.borderCard, strokeOpacity: 0.4, counter: 'CENTER'
   });
   pill.layoutSizingHorizontal = 'HUG';
   pill.layoutSizingVertical = 'HUG';
-  const pillTxt = await txt('Last Month', 'Manrope', 11, 'Regular', C.textMid);
+  const pillTxt = await txt('Last Month', 'Inter', 11, 'Regular', C.textMid);
   pill.appendChild(pillTxt);
   head.appendChild(headTitle);
   head.appendChild(pill);
@@ -616,11 +614,11 @@ async function buildRevenueCard(w) {
   });
   tooltip.x = dotX - 10;
   tooltip.y = dotY - 65;
-  const ttDate = await txt('Sep 2024', 'Manrope', 10, 'Regular', C.textMid);
+  const ttDate = await txt('Sep 2024', 'Inter', 10, 'Regular', C.textMid);
   ttDate.x = 10; ttDate.y = 8;
-  const ttRev = await txt('● Revenue: $12,832', 'Manrope', 10, 'Regular', C.textHi);
+  const ttRev = await txt('● Revenue: $12,832', 'Inter', 10, 'Regular', C.textHi);
   ttRev.x = 10; ttRev.y = 22;
-  const ttTgt = await txt('● Target: $10,100', 'Manrope', 10, 'Regular', C.blue);
+  const ttTgt = await txt('● Target: $10,100', 'Inter', 10, 'Regular', C.blue);
   ttTgt.x = 10; ttTgt.y = 36;
   tooltip.appendChild(ttDate);
   tooltip.appendChild(ttRev);
@@ -639,7 +637,7 @@ async function buildRetentionCard(w) {
     stroke: C.borderCard, strokeW: 1
   });
 
-  const titleTxt = await txt('Retention Performance Breakdown', 'Inter', 18, 'Semi Bold', C.textHi);
+  const titleTxt = await txt('Retention Performance Breakdown', 'Inter', 18, 'Medium', C.textHi);
   titleTxt.x = 3; titleTxt.y = 0;
 
   const body = frame(w - 14, 284, C.bgCardInner, 10, {
@@ -669,10 +667,10 @@ async function buildRetentionCard(w) {
     dot.layoutSizingVertical = 'FIXED';
     row.appendChild(dot);
 
-    const rowLabel = await txt(item.label, 'Manrope', 16, 'Regular', C.textMid);
+    const rowLabel = await txt(item.label, 'Inter', 16, 'Regular', C.textMid);
     row.appendChild(rowLabel);
 
-    const rowVal = await txt(item.val, 'Manrope', 16, 'Bold', C.textHi);
+    const rowVal = await txt(item.val, 'Inter', 16, 'Bold', C.textHi);
     row.appendChild(rowVal);
 
     legend.appendChild(row);
@@ -704,17 +702,17 @@ async function buildRetentionCard(w) {
   }
 
   // Centered labels
-  const progLabel = await txt('Performance\nProgress', 'Manrope', 16, 'Regular', C.textLo);
+  const progLabel = await txt('Performance\nProgress', 'Inter', 16, 'Regular', C.textLo);
   progLabel.textAlignHorizontal = 'CENTER';
   progLabel.x = Math.round(gw / 2) - 50; progLabel.y = 30;
 
-  const numLabel = await txt('1,800', 'Manrope', 22, 'Extra Bold', C.textHi);
+  const numLabel = await txt('1,800', 'Inter', 22, 'Bold', C.textHi);
   numLabel.x = Math.round(gw / 2) - 22; numLabel.y = 70;
 
   gaugeArea.appendChild(progLabel);
   gaugeArea.appendChild(numLabel);
 
-  const footTxt = await txt('Your weekly campaign limit is 20.', 'Manrope', 16, 'Regular', C.textLo);
+  const footTxt = await txt('Your weekly campaign limit is 20.', 'Inter', 16, 'Regular', C.textLo);
   footTxt.textAlignHorizontal = 'CENTER';
   footTxt.x = 0; footTxt.y = 130;
 
@@ -741,7 +739,7 @@ async function buildReportsCard(w) {
     stroke: C.textLo, strokeOpacity: 0.2, counter: 'CENTER'
   });
   srch.resize(165, 30);
-  const srchTxt = await txt('Search', 'Manrope', 11.5, 'Regular', C.textLo);
+  const srchTxt = await txt('Search', 'Inter', 11.5, 'Regular', C.textLo);
   srch.appendChild(srchTxt);
 
   // Sort button
@@ -750,7 +748,7 @@ async function buildReportsCard(w) {
   });
   sortBtn.layoutSizingHorizontal = 'HUG';
   sortBtn.layoutSizingVertical = 'HUG';
-  const sortTxt = await txt('Sort by', 'Manrope', 11.5, 'Regular', C.textMid);
+  const sortTxt = await txt('Sort by', 'Inter', 11.5, 'Regular', C.textMid);
   sortBtn.appendChild(sortTxt);
 
   // Export button
@@ -760,7 +758,7 @@ async function buildReportsCard(w) {
   expBtn.fills = [];
   expBtn.layoutSizingHorizontal = 'HUG';
   expBtn.layoutSizingVertical = 'HUG';
-  const expTxt = await txt('Export CSV', 'Manrope', 11.5, 'Medium', C.blue);
+  const expTxt = await txt('Export CSV', 'Inter', 11.5, 'Medium', C.blue);
   expBtn.appendChild(expTxt);
 
   // Spacer between sort and export
@@ -795,7 +793,7 @@ async function buildReportsCard(w) {
   thRow.fills = [];
   let cx = 10;
   for (let i = 0; i < headers.length; i++) {
-    const th = await txt(headers[i], 'Manrope', 16, 'Semi Bold', C.textLo);
+    const th = await txt(headers[i], 'Inter', 16, 'Medium', C.textLo);
     th.textCase = 'UPPER';
     th.letterSpacing = { value: 0.5, unit: 'PIXELS' };
     th.x = cx; th.y = 8;
@@ -821,8 +819,8 @@ async function buildReportsCard(w) {
 
     const nameCol = autoFrame('V', 2, 0, 0, 0, 0, null, 0);
     nameCol.x = rcx; nameCol.y = rowY;
-    const rn = await txt(row.name, 'Manrope', 16, 'Semi Bold', C.textHi);
-    const rs = await txt(row.sub, 'Manrope', 16, 'Regular', C.textLo);
+    const rn = await txt(row.name, 'Inter', 16, 'Medium', C.textHi);
+    const rs = await txt(row.sub, 'Inter', 16, 'Regular', C.textLo);
     nameCol.appendChild(rn);
     nameCol.appendChild(rs);
     nameCol.layoutSizingHorizontal = 'HUG';
@@ -830,12 +828,12 @@ async function buildReportsCard(w) {
     body.appendChild(nameCol);
     rcx += colWidths[0];
 
-    const dateTxt = await txt(row.date, 'Manrope', 16, 'Regular', C.textMid);
+    const dateTxt = await txt(row.date, 'Inter', 16, 'Regular', C.textMid);
     dateTxt.x = rcx; dateTxt.y = rowY + 8;
     body.appendChild(dateTxt);
     rcx += colWidths[1];
 
-    const filtTxt = await txt(row.filters, 'Manrope', 16, 'Regular', C.textLo);
+    const filtTxt = await txt(row.filters, 'Inter', 16, 'Regular', C.textLo);
     filtTxt.x = rcx; filtTxt.y = rowY + 8;
     body.appendChild(filtTxt);
     rcx += colWidths[2];
@@ -847,7 +845,7 @@ async function buildReportsCard(w) {
     fmtBadge.x = rcx; fmtBadge.y = rowY + 5;
     fmtBadge.layoutSizingHorizontal = 'HUG';
     fmtBadge.layoutSizingVertical = 'HUG';
-    const fmtTxt = await txt(row.fmt, 'Inter', 10, 'Semi Bold', C.blue);
+    const fmtTxt = await txt(row.fmt, 'Inter', 10, 'Medium', C.blue);
     fmtBadge.appendChild(fmtTxt);
     body.appendChild(fmtBadge);
     rcx += colWidths[3];
@@ -886,7 +884,7 @@ async function buildMetricCard(w, h, label, value, badgeLabel, badgeType, sparkC
   });
   top.resize(w, 34);
   top.fills = [];
-  const mcLbl = await txt(label, 'Inter', 18, 'Semi Bold', C.textMid);
+  const mcLbl = await txt(label, 'Inter', 18, 'Medium', C.textMid);
   mcLbl.x = 3; mcLbl.y = 0;
   const mcIco = frame(28, 28, C.bgInset, 7, { stroke: C.textLo, strokeOpacity: 0.25 });
   mcIco.x = w - 35; mcIco.y = 0;
@@ -908,7 +906,7 @@ async function buildMetricCard(w, h, label, value, badgeLabel, badgeType, sparkC
   valRow.layoutSizingHorizontal = 'FILL';
   valRow.layoutSizingVertical = 'HUG';
 
-  const valTxt = await txt(value, 'Manrope', 22, 'Extra Bold', C.textHi);
+  const valTxt = await txt(value, 'Inter', 22, 'Bold', C.textHi);
   valRow.appendChild(valTxt);
 
   let bgCol, txtCol, bgOp;
@@ -935,8 +933,8 @@ async function buildMetricCard(w, h, label, value, badgeLabel, badgeType, sparkC
   const trendIco = rect(6, 6, C.green, 1);
   trendIco.layoutSizingHorizontal = 'FIXED';
   trendIco.layoutSizingVertical = 'FIXED';
-  const trendStrong = await txt('+5%', 'Manrope', 16, 'Bold', C.green);
-  const trendFrom = await txt('From last month', 'Manrope', 16, 'Regular', C.textLo);
+  const trendStrong = await txt('+5%', 'Inter', 16, 'Bold', C.green);
+  const trendFrom = await txt('From last month', 'Inter', 16, 'Regular', C.textLo);
   trendRow.appendChild(trendIco);
   trendRow.appendChild(trendStrong);
   trendRow.appendChild(trendFrom);
