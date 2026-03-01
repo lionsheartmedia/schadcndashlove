@@ -13,7 +13,7 @@ function hex(h) {
   const n = parseInt(h, 16);
   return { r: ((n >> 16) & 255) / 255, g: ((n >> 8) & 255) / 255, b: (n & 255) / 255 };
 }
-function rgba(h, a) { return { ...hex(h), a }; }
+function rgba(h, a) { var c = hex(h); return { r: c.r, g: c.g, b: c.b, a: a }; }
 
 // ─── Palette ──────────────────────────────────────────────────────
 const C = {
@@ -149,8 +149,8 @@ function avatar(size, label, radius = size / 2) {
   f.fills = [{
     type: 'GRADIENT_LINEAR',
     gradientStops: [
-      { position: 0, color: { ...hex('#7060f0'), a: 1 } },
-      { position: 1, color: { ...hex('#4a84f4'), a: 1 } },
+      { position: 0, color: { r: hex('#7060f0').r, g: hex('#7060f0').g, b: hex('#7060f0').b, a: 1 } },
+      { position: 1, color: { r: hex('#4a84f4').r, g: hex('#4a84f4').g, b: hex('#4a84f4').b, a: 1 } },
     ],
     gradientTransform: [[0.7071, -0.7071, 0.5], [0.7071, 0.7071, -0.0711]]
   }];
@@ -163,8 +163,8 @@ function gradientFill(c1, c2, angle = 90) {
   return {
     type: 'GRADIENT_LINEAR',
     gradientStops: [
-      { position: 0, color: { ...hex(c1), a: 1 } },
-      { position: 1, color: { ...hex(c2), a: 1 } },
+      { position: 0, color: { r: hex(c1).r, g: hex(c1).g, b: hex(c1).b, a: 1 } },
+      { position: 1, color: { r: hex(c2).r, g: hex(c2).g, b: hex(c2).b, a: 1 } },
     ],
     gradientTransform: [
       [Math.cos(rad), -Math.sin(rad), 0.5 - 0.5 * Math.cos(rad) + 0.5 * Math.sin(rad)],
@@ -174,7 +174,8 @@ function gradientFill(c1, c2, angle = 90) {
 }
 
 // ─── Drop shadow effect ───────────────────────────────────────────
-function dropShadow(colorHex, opacity, offsetX, offsetY, blur, spread = 0) {
+function dropShadow(colorHex, opacity, offsetX, offsetY, blur, spread) {
+  if (spread === undefined) { spread = 0; }
   const c = hex(colorHex);
   return {
     type: 'DROP_SHADOW',
@@ -206,7 +207,7 @@ function sparkline(w, h, color) {
   const f = frame(w, h, null, 0);
   const bars = [42, 36, 46, 31, 50, 43, 39, 54, 47, 53, 46, 61, 55, 59];
   const bw = Math.floor(w / bars.length) - 1;
-  const mx = Math.max(...bars);
+  var mx = bars.reduce(function(a, b) { return a > b ? a : b; }, 0);
   bars.forEach((v, i) => {
     const bh = Math.max(2, Math.round((v / mx) * h));
     const b = rect(Math.max(1, bw), bh, color, 1, 0.6);
